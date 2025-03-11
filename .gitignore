@@ -1,0 +1,52 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Logs
+logs/
+*.log
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+
+# WebStorm IDE settings
+.idea/
+*.iml
+*.iws
+out/
+
+# Dist and build files
+dist/
+build/
+.cache/
+.vuepress/dist/
+
+# Testing
+coverage/
+*.lcov
+
+# Dependency directories
+bower_components/
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Vite and Nuxt build caches
+.vite/
+.nuxt/
+
+# VSCode settings (optional)
+.vscode/
+
+# MacOS and system files
+.DS_Store
+Thumbs.db
