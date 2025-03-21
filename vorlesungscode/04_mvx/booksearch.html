@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Booksearch</title>
+    <style>
+        .book-card {
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Suchfeld -->
+<input type="text" id="search" placeholder="Search Books..." />
+
+<!-- Container für die Buchkarten -->
+<div id="book-container">
+    <div class="book-card" id="book1">
+        <p>Book 1</p>
+        <button class="toggle-btn">Toggle View</button>
+    </div>
+    <div class="book-card" id="book2">
+        <p>Book 2</p>
+        <button class="toggle-btn">Toggle View</button>
+    </div>
+</div>
+
+<button id="add-btn">Add Book</button>
+
+<script>
+    // Funktion, um Bücher nach Name zu filtern
+    document.getElementById('search').addEventListener('input', (event) => {
+        const searchTerm = event.target.value.toLowerCase();
+        const books = document.querySelectorAll('.book-card');
+        books.forEach(book => {
+            const bookName = book.querySelector('p').textContent.toLowerCase();
+            if (bookName.includes(searchTerm)) {
+                book.style.display = '';  // Zeige das Buch an
+            } else {
+                book.style.display = 'none';  // Verstecke das Buch
+            }
+        });
+    });
+
+    // Füge einen Event-Listener für den "Add Book"-Button hinzu
+    document.getElementById('add-btn').addEventListener('click', () => {
+        const bookContainer = document.getElementById('book-container');
+        const newBookId = 'book' + (bookContainer.children.length + 1);
+
+        const newBook = document.createElement('div');
+        newBook.classList.add('book-card');
+        newBook.id = newBookId;
+        newBook.innerHTML = `
+        <p>Book ${bookContainer.children.length + 1}</p>
+        <button class="toggle-btn">Toggle View</button>
+      `;
+        bookContainer.appendChild(newBook);
+
+        // Füge einen Event-Listener für den neuen Toggle-Button hinzu
+        const newToggleButton = newBook.querySelector('.toggle-btn');
+        newToggleButton.addEventListener('click', () => toggleBookView(newBookId));
+    });
+
+    // Toggle-Funktion, um die Buch-Karte zu entfernen und neu hinzuzufügen
+    function toggleBookView(bookId) {
+        const book = document.getElementById(bookId);
+        const toggleButton = book.querySelector('.toggle-btn');
+
+        // Entferne das Buch
+        book.remove();
+
+        // Erstelle das Buch neu und füge es wieder hinzu
+        const newBook = document.createElement('div');
+        newBook.classList.add('book-card');
+        newBook.id = bookId;
+        newBook.innerHTML = `
+        <p>${bookId.replace('book', 'Book ')}</p>
+        <button class="toggle-btn">Toggle View</button>
+      `;
+        document.getElementById('book-container').appendChild(newBook);
+
+        // Füge den Event-Listener für den neuen Toggle-Button hinzu
+        const newToggleButton = newBook.querySelector('.toggle-btn');
+        newToggleButton.addEventListener('click', () => toggleBookView(bookId));
+    }
+
+    // Füge den Event-Listener für die bestehenden Toggle-Buttons hinzu
+    const buttons = document.querySelectorAll('.toggle-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const book = button.closest('.book-card');
+            toggleBookView(book.id);
+        });
+    });
+</script>
+
+</body>
+</html>
