@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Alignment & Direction Demo</title>
+    <style>
+        /* Basic Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        /* Flex Container */
+        .container {
+            display: flex;
+            flex-direction: row; /* Default direction */
+            width: 60%;
+            height: 350px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* Flex Items */
+        .box {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .box1 { background: #ff5733; }
+        .box2 { background: #33aaff; }
+        .box3 { background: #33cc77; }
+
+        /* Controls Container */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between dropdowns */
+            flex-wrap: wrap;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Labels & Selects Styling */
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .controls label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .controls select {
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Flexbox Alignment & Direction Demo</h1>
+<p>Change the alignment and flex-direction properties below to see the effects in real-time.</p>
+
+<div class="container" id="flexContainer">
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+</div>
+
+<!-- Controls for Alignment & Flex-Direction -->
+<div class="controls">
+    <div class="control-group">
+        <label for="direction">flex-direction:</label>
+        <select id="direction" onchange="updateFlexbox()">
+            <option value="row" selected>row</option>
+            <option value="row-reverse">row-reverse</option>
+            <option value="column">column</option>
+            <option value="column-reverse">column-reverse</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label for="justify">justify-content:</label>
+        <select id="justify" onchange="updateFlexbox()">
+            <option value="flex-start">flex-start</option>
+            <option value="center" selected>center</option>
+            <option value="flex-end">flex-end</option>
+            <option value="space-between">space-between</option>
+            <option value="space-around">space-around</option>
+            <option value="space-evenly">space-evenly</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label for="align">align-items:</label>
+        <select id="align" onchange="updateFlexbox()">
+            <option value="stretch">stretch</option>
+            <option value="flex-start">flex-start</option>
+            <option value="center" selected>center</option>
+            <option value="flex-end">flex-end</option>
+            <option value="baseline">baseline</option>
+        </select>
+    </div>
+</div>
+
+<script>
+    function updateFlexbox() {
+        const container = document.getElementById("flexContainer");
+        const directionValue = document.getElementById("direction").value;
+        const justifyValue = document.getElementById("justify").value;
+        const alignValue = document.getElementById("align").value;
+
+        container.style.flexDirection = directionValue;
+        container.style.justifyContent = justifyValue;
+        container.style.alignItems = alignValue;
+    }
+</script>
+
+</body>
+</html>
