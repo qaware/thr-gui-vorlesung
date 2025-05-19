@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    .btn {
+        @apply px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded shadow focus:outline-none focus:ring focus:ring-blue-300 transition;
+    }
+}
